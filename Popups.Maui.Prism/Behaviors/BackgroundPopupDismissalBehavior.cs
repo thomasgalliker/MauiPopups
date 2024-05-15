@@ -3,7 +3,6 @@ using Mopups.Pages;
 using Popups.Maui.Prism.Extensions;
 using Popups.Maui.Prism.Internal;
 using Prism.Behaviors;
-using Prism.Common;
 
 namespace Popups.Maui.Prism.Behaviors
 {
