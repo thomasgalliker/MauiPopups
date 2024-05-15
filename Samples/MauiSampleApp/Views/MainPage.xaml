@@ -35,8 +35,17 @@
 
             <Label
                 Style="{StaticResource Heading1LabelStyle}"
-                Text="IPopupNavigation" />
+                Text="INavigationService" />
 
+            <Entry
+                x:Name="PageEntry"
+                Placeholder="Page"
+                Text="MainPage" />
+            <Button
+                Command="{Binding NavigateToPageCommand}"
+                CommandParameter="{Binding Source={x:Reference PageEntry}, Path=Text}"
+                Text="Navigate to page"
+                HorizontalOptions="Fill" />
             <Button
                 Command="{Binding ShowPopupCommand}"
                 Text="Show popup"

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Diagnostics;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 
@@ -14,6 +15,7 @@ namespace MauiSampleApp.ViewModels
         private readonly IPreferences preferences;
 
         private IAsyncRelayCommand showPopupCommand;
+        private IAsyncRelayCommand navigateToPageCommand;
 
         public MainViewModel(
             ILogger<MainViewModel> logger,
@@ -31,7 +33,7 @@ namespace MauiSampleApp.ViewModels
             this.preferences = preferences;
         }
 
-        public async void OnNavigatedFrom(INavigationParameters parameters)
+        public async void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.GetNavigationMode() == NavigationMode.New)
             {
@@ -39,8 +41,9 @@ namespace MauiSampleApp.ViewModels
             }
         }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public void OnNavigatedFrom(INavigationParameters parameters)
         {
+            
         }
 
         private async Task InitializeAsync()
@@ -55,13 +58,46 @@ namespace MauiSampleApp.ViewModels
             }
         }
 
+        public ICommand NavigateToPageCommand => this.navigateToPageCommand ??= new AsyncRelayCommand<string>(this.NavigateToPageAsync);
+
+        private async Task NavigateToPageAsync(string page)
+        {
+            try
+            {
+                var parameters = new NavigationParameters
+                {
+                    { "key1", "value1" }
+                };
+
+                var result = await this.navigationService.NavigateAsync(page, parameters);
+                if (!result.Success)
+                {
+                    Debugger.Break();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, "ShowPopupAsync failed with exception");
+                await this.pageDialogService.DisplayAlertAsync("Error", "ShowPopupAsync failed with exception", "OK");
+            }
+        }
+
         public ICommand ShowPopupCommand => this.showPopupCommand ??= new AsyncRelayCommand(this.ShowPopupAsync);
 
         private async Task ShowPopupAsync()
         {
             try
             {
-                
+                var parameters = new NavigationParameters
+                {
+                    { "key1", "value1" }
+                };
+
+                var result = await this.navigationService.NavigateAsync(App.Pages.ContextMenuPopupPage, parameters);
+                if (!result.Success)
+                {
+                    Debugger.Break();
+                }
             }
             catch (Exception ex)
             {

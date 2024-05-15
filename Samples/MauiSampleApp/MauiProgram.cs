@@ -1,8 +1,10 @@
-﻿using CommunityToolkit.Maui;
+﻿using System.Diagnostics;
+using CommunityToolkit.Maui;
 using MauiSampleApp.ViewModels;
 using MauiSampleApp.Views;
 using Microsoft.Extensions.Logging;
 using Popups.Maui;
+using Popups.Maui.Prism;
 
 namespace MauiSampleApp
 {
@@ -16,17 +18,18 @@ namespace MauiSampleApp
                 .UsePrism(prism =>
                 {
                     prism
+                        .UseMauiPopups()
                         .RegisterTypes(RegisterTypes)
                         .CreateWindow(async (containerProvider, navigationService) =>
                         {
-                            var result = await navigationService.NavigateAsync($"/{App.Pages.NavigationPage}/{App.Pages.MainPage}");
+                            //var result = await navigationService.NavigateAsync($"/{App.Pages.NavigationPage}/{App.Pages.MainPage}");
+                            var result = await navigationService.NavigateAsync($"{App.Pages.MainPage}");
                             if (!result.Success)
                             {
-
+                                Debugger.Break();
                             }
                         });
                 })
-                .UseMauiPopups()
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
@@ -46,6 +49,7 @@ namespace MauiSampleApp
 
         private static void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Register services
             containerRegistry.RegisterSingleton<IShare>(() => Share.Default);
             containerRegistry.RegisterSingleton<IPreferences>(() => Preferences.Default);
             containerRegistry.RegisterSingleton<IEmail>(() => Email.Default);
@@ -53,7 +57,9 @@ namespace MauiSampleApp
             containerRegistry.RegisterSingleton<IDeviceInfo>(() => DeviceInfo.Current);
             containerRegistry.RegisterSingleton<IFileSystem>(() => FileSystem.Current);
 
+            // Register pages
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(App.Pages.MainPage);
+            containerRegistry.RegisterForNavigation<ContextMenuPopupPage, ContextMenuPopupViewModel>(App.Pages.ContextMenuPopupPage);
         }
     }
 }

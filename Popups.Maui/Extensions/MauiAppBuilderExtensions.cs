@@ -1,4 +1,9 @@
 ﻿using Microsoft.Maui.LifecycleEvents;
+using Mopups.Hosting;
+using Mopups.Pages;
+#if IOS
+using Mopups.Platforms.iOS;
+#endif
 
 namespace Popups.Maui
 {
@@ -9,32 +14,25 @@ namespace Popups.Maui
         /// </summary>
         public static MauiAppBuilder UseMauiPopups(this MauiAppBuilder builder)
         {
-            builder.ConfigureLifecycleEvents(events =>
-            {
-#if IOS
-                events.AddiOS(iOS => iOS.FinishedLaunching((application, launchOptions) =>
-                {
-                    return true;
-                }));
-#elif ANDROID
-                events.AddAndroid(android => android.OnApplicationCreate(d =>
-                {
+            //builder.ConfigureMopups();
 
-                }));
-                events.AddAndroid(android => android.OnCreate((activity, intent) =>
+            builder.ConfigureLifecycleEvents(delegate (ILifecycleBuilder lifecycle)
+            {
+#if ANDROID        
+                lifecycle.AddAndroid(delegate (IAndroidLifecycleBuilder d)
                 {
-                }));
-                events.AddAndroid(android => android.OnNewIntent((activity, intent) =>
-                {
-                }));
+                    d.OnBackPressed((Android.App.Activity activity) =>
+                    {
+                        return Mopups.Droid.Implementation.AndroidMopups.SendBackPressed();
+                    });
+                });
+#endif
+            }).ConfigureMauiHandlers(delegate (IMauiHandlersCollection handlers)
+            {
+#if ANDROID || IOS
+                handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
 #endif
             });
-
-            // Service registrations
-#if ANDROID || IOS
-            //builder.Services.AddSingleton(c => ....Current);
-            //builder.Services.AddSingleton<..., ...>();
-#endif
 
             return builder;
         }

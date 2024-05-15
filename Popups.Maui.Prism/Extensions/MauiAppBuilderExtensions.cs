@@ -1,42 +1,35 @@
-﻿using Microsoft.Maui.LifecycleEvents;
+﻿using Mopups.Interfaces;
+using Mopups.Services;
+using Popups.Maui.Prism.Behaviors;
+using Popups.Maui.Prism.Dialogs;
+using Prism.Behaviors;
 
 namespace Popups.Maui.Prism
 {
     public static class MauiAppBuilderExtensions
     {
         /// <summary>
-        /// Configures Popups.Maui to use with this app.
+        /// Configures Popups.Maui.Prism to use with this app.
         /// </summary>
-        public static MauiAppBuilder UsePrismMauiPopups(this MauiAppBuilder builder)
+        public static PrismAppBuilder UseMauiPopups(this PrismAppBuilder builder)
         {
-            builder.ConfigureLifecycleEvents(events =>
-            {
-#if IOS
-                events.AddiOS(iOS => iOS.FinishedLaunching((application, launchOptions) =>
-                {
-                    return true;
-                }));
-#elif ANDROID
-                events.AddAndroid(android => android.OnApplicationCreate(d =>
-                {
+            builder.MauiBuilder.UseMauiPopups();
 
-                }));
-                events.AddAndroid(android => android.OnCreate((activity, intent) =>
-                {
-                }));
-                events.AddAndroid(android => android.OnNewIntent((activity, intent) =>
-                {
-                }));
-#endif
-            });
-
-            // Service registrations
-#if ANDROID || IOS
-            //builder.Services.AddSingleton(c => ....);
-            //builder.Services.AddSingleton<...,...>();
-#endif
+            builder.RegisterTypes(RegisterTypes);
 
             return builder;
+        }
+
+        private static void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterScoped<INavigationService, PopupPageNavigationService>();
+            containerRegistry.RegisterSingleton<IDialogService, PopupDialogService>();
+            containerRegistry.RegisterSingleton<IPageBehaviorFactory, PopupPageBehaviorFactory>();
+
+            if (!containerRegistry.IsRegistered<IPopupNavigation>())
+            {
+                containerRegistry.RegisterInstance(MopupService.Instance);
+            }
         }
     }
 }

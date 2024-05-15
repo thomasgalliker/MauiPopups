@@ -131,7 +131,7 @@ steps:
   displayName: 'Pack Popups.Maui'
   inputs:
     command: pack
-    packagesToPack: MauiPopups/MauiPopups.csproj
+    packagesToPack: Popups.Maui/Popups.Maui.csproj
     versioningScheme: byEnvVar
     versionEnvVar: semVersion
     nobuild: true
@@ -140,7 +140,7 @@ steps:
   displayName: 'Pack Popups.Maui.Prism'
   inputs:
     command: pack
-    packagesToPack: MauiPopups.Prism/MauiPopups.Prism.csproj
+    packagesToPack: Popups.Maui.Prism/Popups.Maui.Prism.csproj
     versioningScheme: byEnvVar
     versionEnvVar: semVersion
     nobuild: true
