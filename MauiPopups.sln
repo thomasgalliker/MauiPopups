@@ -1,0 +1,103 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Popups.Maui", "Popups.Maui\Popups.Maui.csproj", "{7A8055B8-E3EE-439D-9D03-F90C8153DF85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Popups.Maui.Prism", "Popups.Maui.Prism\Popups.Maui.Prism.csproj", "{BEC5F651-EF16-4B20-B214-28610220616E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{F0F0BD5B-C53F-48B4-93C2-42358AF51660}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F4EA6EB3-0D16-4797-8D07-D612DB8C5FD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{175DCB0E-084B-4146-8DBB-115598B42F81}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		azure-pipelines.yml = azure-pipelines.yml
+		clean.bat = clean.bat
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiSampleApp", "Samples\MauiSampleApp\MauiSampleApp.csproj", "{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Popups.Maui.Tests", "Tests\Popups.Maui.Tests\Popups.Maui.Tests.csproj", "{8193D57A-07BE-441D-850D-C2D0CA785F5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Device = Debug|Device
+		Debug|Simulator = Debug|Simulator
+		Release|Any CPU = Release|Any CPU
+		Release|Device = Release|Device
+		Release|Simulator = Release|Simulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Debug|Device.ActiveCfg = Debug|Device
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Debug|Device.Build.0 = Debug|Device
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Debug|Simulator.ActiveCfg = Debug|Simulator
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Debug|Simulator.Build.0 = Debug|Simulator
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Release|Device.ActiveCfg = Release|Device
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Release|Device.Build.0 = Release|Device
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Release|Simulator.ActiveCfg = Release|Simulator
+		{7A8055B8-E3EE-439D-9D03-F90C8153DF85}.Release|Simulator.Build.0 = Release|Simulator
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Debug|Device.ActiveCfg = Debug|Device
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Debug|Device.Build.0 = Debug|Device
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Debug|Simulator.ActiveCfg = Debug|Simulator
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Debug|Simulator.Build.0 = Debug|Simulator
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Release|Device.ActiveCfg = Release|Device
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Release|Device.Build.0 = Release|Device
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Release|Simulator.ActiveCfg = Release|Simulator
+		{BEC5F651-EF16-4B20-B214-28610220616E}.Release|Simulator.Build.0 = Release|Simulator
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Device.ActiveCfg = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Device.Build.0 = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Device.Deploy.0 = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Simulator.ActiveCfg = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Simulator.Build.0 = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Debug|Simulator.Deploy.0 = Debug|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Device.ActiveCfg = Release|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Device.Build.0 = Release|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Device.Deploy.0 = Release|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Simulator.ActiveCfg = Release|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Simulator.Build.0 = Release|Any CPU
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1}.Release|Simulator.Deploy.0 = Release|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Debug|Device.ActiveCfg = Debug|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Debug|Device.Build.0 = Debug|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Debug|Simulator.ActiveCfg = Debug|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Debug|Simulator.Build.0 = Debug|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Release|Device.ActiveCfg = Release|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Release|Device.Build.0 = Release|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Release|Simulator.ActiveCfg = Release|Any CPU
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F}.Release|Simulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC6074C3-00CB-49CC-9B44-822FB99CD1E1} = {F0F0BD5B-C53F-48B4-93C2-42358AF51660}
+		{8193D57A-07BE-441D-850D-C2D0CA785F5F} = {F4EA6EB3-0D16-4797-8D07-D612DB8C5FD3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54ACF943-82D9-46CC-95A5-9FB4A47F0FC7}
+	EndGlobalSection
+EndGlobal
