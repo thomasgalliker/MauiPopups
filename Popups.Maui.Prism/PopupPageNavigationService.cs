@@ -135,7 +135,14 @@ namespace Popups.Maui
         /// <inheritdoc />
         protected override Page GetCurrentPage()
         {
-            return this.PopupNavigation.PopupStack.Any() ? this.PopupNavigation.PopupStack.LastOrDefault() : base.GetCurrentPage();
+            if (this.PopupNavigation.PopupStack.Any())
+            {
+                return this.PopupNavigation.PopupStack.LastOrDefault();
+            }
+            else
+            {
+                return base.GetCurrentPage();
+            }
         }
     }
 }
