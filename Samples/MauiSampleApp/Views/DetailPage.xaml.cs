@@ -1,8 +1,8 @@
 namespace MauiSampleApp.Views
 {
-    public partial class DetailPage1 : ContentPage
+    public partial class DetailPage : ContentPage
     {
-        public DetailPage1()
+        public DetailPage()
         {
             this.InitializeComponent();
         }

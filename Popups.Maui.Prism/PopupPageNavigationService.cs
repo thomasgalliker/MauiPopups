@@ -14,7 +14,7 @@ namespace Popups.Maui.Prism
         /// <summary>
         /// Gets the <see cref="IPopupNavigation" /> service.
         /// </summary>
-        protected IPopupNavigation PopupNavigation { get; }
+        private readonly IPopupNavigation popupNavigation;
 
         /// <summary>
         /// Creates a new instance of the <see cref="PopupPageNavigationService" />
@@ -32,7 +32,7 @@ namespace Popups.Maui.Prism
             IPageAccessor pageAccessor)
             : base(container, windowManager, eventAggregator, pageAccessor)
         {
-            this.PopupNavigation = popupNavigation;
+            this.popupNavigation = popupNavigation;
             // _page = windowManager.Windows[^1].Page;
         }
 
@@ -43,12 +43,12 @@ namespace Popups.Maui.Prism
             parameters.TryGetValue(KnownNavigationParameters.Animated, out bool? animated);
             try
             {
-                switch (PopupUtilities.TopPage(this.PopupNavigation, this._windowManager))
+                switch (PopupUtilities.TopPage(this.popupNavigation, this._windowManager))
                 {
                     case PopupPage popupPage:
                         var segmentParameters = UriParsingHelper.GetSegmentParameters(null, parameters);
                         ((INavigationParametersInternal)segmentParameters).Add("__NavigationMode", NavigationMode.Back);
-                        var previousPage = PopupUtilities.GetOnNavigatedToTarget(this.PopupNavigation, this._windowManager);
+                        var previousPage = PopupUtilities.GetOnNavigatedToTarget(this.popupNavigation, this._windowManager);
 
                         await this.DoPop(popupPage.Navigation, false, animated ?? false);
 
@@ -80,9 +80,9 @@ namespace Popups.Maui.Prism
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)
         {
             var page = this._pageAccessor.Page;
-            if (this.PopupNavigation.PopupStack.Count > 0 || page is PopupPage)
+            if (this.popupNavigation.PopupStack.Count > 0 || page is PopupPage)
             {
-                await this.PopupNavigation.PopAsync(animated);
+                await this.popupNavigation.PopAsync(animated);
                 return null;
             }
 
@@ -100,17 +100,17 @@ namespace Popups.Maui.Prism
                         throw new NavigationException("Popup Pages cannot be set before the Application.MainPage has been set. You must have a valid NavigationStack prior to navigating.", popup);
                     }
 
-                    await this.PopupNavigation.PushAsync(popup, animated.GetValueOrDefault());
+                    await this.popupNavigation.PushAsync(popup, animated.GetValueOrDefault());
                     break;
                 default:
-                    if (this.PopupNavigation.PopupStack.Any())
+                    if (this.popupNavigation.PopupStack.Any())
                     {
-                        foreach (var pageToPop in this.PopupNavigation.PopupStack)
+                        foreach (var pageToPop in this.popupNavigation.PopupStack)
                         {
                             PageUtilities.DestroyPage(pageToPop);
                         }
 
-                        await this.PopupNavigation.PopAllAsync(animated.GetValueOrDefault());
+                        await this.popupNavigation.PopAllAsync(animated.GetValueOrDefault());
                     }
 
                     if (currentPage is PopupPage)
@@ -126,9 +126,9 @@ namespace Popups.Maui.Prism
         /// <inheritdoc />
         protected override Page GetCurrentPage()
         {
-            if (this.PopupNavigation.PopupStack.Any())
+            if (this.popupNavigation.PopupStack.Any())
             {
-                return this.PopupNavigation.PopupStack.LastOrDefault();
+                return this.popupNavigation.PopupStack.LastOrDefault();
             }
             else
             {

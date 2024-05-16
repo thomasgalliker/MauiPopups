@@ -1,6 +1,4 @@
-﻿using Mopups.Interfaces;
-using Mopups.Services;
-using Popups.Maui.Prism.Behaviors;
+﻿using Popups.Maui.Prism.Behaviors;
 using Popups.Maui.Prism.Dialogs;
 using Prism.Behaviors;
 
@@ -25,11 +23,6 @@ namespace Popups.Maui.Prism
             containerRegistry.RegisterScoped<INavigationService, PopupPageNavigationService>();
             containerRegistry.RegisterSingleton<IDialogService, PopupDialogService>();
             containerRegistry.RegisterSingleton<IPageBehaviorFactory, PopupPageBehaviorFactory>();
-
-            if (!containerRegistry.IsRegistered<IPopupNavigation>())
-            {
-                containerRegistry.RegisterInstance(MopupService.Instance);
-            }
         }
     }
 }

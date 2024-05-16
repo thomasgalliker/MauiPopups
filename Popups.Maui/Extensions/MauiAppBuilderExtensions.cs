@@ -1,6 +1,7 @@
-﻿using Microsoft.Maui.LifecycleEvents;
-using Mopups.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Maui.LifecycleEvents;
 using Mopups.Pages;
+using Mopups.Services;
 #if IOS
 using Mopups.Platforms.iOS;
 #endif
@@ -33,6 +34,8 @@ namespace Popups.Maui
                 handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
 #endif
             });
+
+            builder.Services.TryAddSingleton(MopupService.Instance);
 
             return builder;
         }

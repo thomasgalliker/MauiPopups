@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace MauiSampleApp.ViewModels
 {
-    public class MainViewModel : BindableBase, INavigatedAware, IDestructible
+    public class DetailViewModel : BindableBase, INavigatedAware, IDestructible
     {
         private readonly ILogger logger;
         private readonly IPageDialogService pageDialogService;
@@ -16,8 +16,8 @@ namespace MauiSampleApp.ViewModels
 
         private bool useModalNavigation;
 
-        public MainViewModel(
-            ILogger<MainViewModel> logger,
+        public DetailViewModel(
+            ILogger<DetailViewModel> logger,
             IPageDialogService pageDialogService,
             INavigationService navigationService,
             IPreferences preferences)
