@@ -4,15 +4,13 @@ using Mopups.Pages;
 using Popups.Maui.Prism.Internal;
 using Prism.Common;
 
-namespace Popups.Maui
+namespace Popups.Maui.Prism
 {
     /// <summary>
     /// Implements the <see cref="INavigationService" /> for working with <see cref="PopupPage" />
     /// </summary>
     public class PopupPageNavigationService : PageNavigationService
     {
-        private readonly IPageAccessor pageAccessor;
-
         /// <summary>
         /// Gets the <see cref="IPopupNavigation" /> service.
         /// </summary>
@@ -36,7 +34,6 @@ namespace Popups.Maui
         {
             this.PopupNavigation = popupNavigation;
             // _page = windowManager.Windows[^1].Page;
-            this.pageAccessor = pageAccessor;
         }
 
         /// <inheritdoc />
@@ -82,16 +79,10 @@ namespace Popups.Maui
         /// <inheritdoc />
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)
         {
-            var page = this.pageAccessor.Page;
+            var page = this._pageAccessor.Page;
             if (this.PopupNavigation.PopupStack.Count > 0 || page is PopupPage)
             {
-                try
-                {
-                    await this.PopupNavigation.PopAsync(animated);
-                }
-                catch (Exception ex)
-                {
-                }
+                await this.PopupNavigation.PopAsync(animated);
                 return null;
             }
 
