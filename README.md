@@ -1,5 +1,5 @@
 # Popups.Maui
-[![Version](https://img.shields.io/nuget/v/Popups.Maui.svg)](https://www.nuget.org/packages/Popups.Maui) [![Downloads](https://img.shields.io/nuget/dt/Popups.Maui.svg)](https://www.nuget.org/packages/Popups.Maui) [![Downloads](https://img.shields.io/nuget/dt/Maui.Prism.svg)](https://www.nuget.org/packages/Maui.Prism)
+[![Version](https://img.shields.io/nuget/v/Popups.Maui.svg)](https://www.nuget.org/packages/Popups.Maui) [![Downloads](https://img.shields.io/nuget/dt/Popups.Maui.svg)](https://www.nuget.org/packages/Popups.Maui) [![Downloads](https://img.shields.io/nuget/dt/Popups.Maui.Prism.svg)](https://www.nuget.org/packages/Popups.Maui.Prism)
 
 Popups.Maui provides a cross-platform way to display popups.
 
