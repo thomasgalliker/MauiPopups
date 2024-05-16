@@ -50,12 +50,7 @@ namespace MauiSampleApp
         private static void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register services
-            containerRegistry.RegisterSingleton<IShare>(() => Share.Default);
             containerRegistry.RegisterSingleton<IPreferences>(() => Preferences.Default);
-            containerRegistry.RegisterSingleton<IEmail>(() => Email.Default);
-            containerRegistry.RegisterSingleton<IAppInfo>(() => AppInfo.Current);
-            containerRegistry.RegisterSingleton<IDeviceInfo>(() => DeviceInfo.Current);
-            containerRegistry.RegisterSingleton<IFileSystem>(() => FileSystem.Current);
 
             // Register pages
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(App.Pages.MainPage);

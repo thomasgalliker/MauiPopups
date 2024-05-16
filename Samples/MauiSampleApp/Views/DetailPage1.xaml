@@ -4,10 +4,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MauiSampleApp.Views.DetailPage1"
     Title="DetailPage1">
-    <VerticalStackLayout>
-        <Label
-            Text="DetailPage1"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="16"
+            Spacing="16"
+            VerticalOptions="Start">
+
+            <Button
+                Command="{Binding ShowPopupCommand}"
+                Text="Show popup"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Command="{Binding GoBackCommand}"
+                Text="Go back"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

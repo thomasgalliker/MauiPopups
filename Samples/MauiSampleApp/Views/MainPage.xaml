@@ -41,6 +41,17 @@
                 x:Name="PageEntry"
                 Placeholder="Page"
                 Text="DetailPage1" />
+            <Grid
+                ColumnDefinitions="Auto, *"
+                ColumnSpacing="8">
+                <CheckBox
+                    Grid.Column="0"
+                    IsChecked="{Binding UseModalNavigation}" />
+                <Label
+                    Grid.Column="1"
+                    Text="UseModalNavigation"
+                    VerticalOptions="Center" />
+            </Grid>
             <Button
                 Command="{Binding NavigateToPageCommand}"
                 CommandParameter="{Binding Source={x:Reference PageEntry}, Path=Text}"

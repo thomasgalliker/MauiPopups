@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 
@@ -9,28 +8,23 @@ namespace MauiSampleApp.ViewModels
     {
         private readonly ILogger logger;
         private readonly IPageDialogService pageDialogService;
-        private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
-        private readonly IShare share;
         private readonly IPreferences preferences;
-
         private IAsyncRelayCommand showPopupCommand;
         private IAsyncRelayCommand navigateToPageCommand;
         private IAsyncRelayCommand goBackCommand;
 
+        private bool useModalNavigation;
+
         public MainViewModel(
             ILogger<MainViewModel> logger,
             IPageDialogService pageDialogService,
-            IDialogService dialogService,
             INavigationService navigationService,
-            IShare share,
             IPreferences preferences)
         {
             this.logger = logger;
             this.pageDialogService = pageDialogService;
-            this.dialogService = dialogService;
             this.navigationService = navigationService;
-            this.share = share;
             this.preferences = preferences;
         }
 
@@ -50,11 +44,24 @@ namespace MauiSampleApp.ViewModels
         {
             try
             {
+                this.UseModalNavigation = this.preferences.Get("UseModalNavigation", false);
             }
             catch (Exception ex)
             {
                 this.logger.LogError(ex, "InitializeAsync failed with exception");
                 await this.pageDialogService.DisplayAlertAsync("Error", "Initialization failed", "OK");
+            }
+        }
+
+        public bool UseModalNavigation
+        {
+            get => this.useModalNavigation;
+            set
+            {
+                if (this.SetProperty(ref this.useModalNavigation, value))
+                {
+                    this.preferences.Set("UseModalNavigation", value);
+                }
             }
         }
 
@@ -67,7 +74,7 @@ namespace MauiSampleApp.ViewModels
                 var parameters = new NavigationParameters
                 {
                     { "key1", "value1" },
-                    { KnownNavigationParameters.UseModalNavigation, "true" }
+                    { KnownNavigationParameters.UseModalNavigation, this.UseModalNavigation }
                 };
 
                 var result = await this.navigationService.NavigateAsync(page, parameters);
