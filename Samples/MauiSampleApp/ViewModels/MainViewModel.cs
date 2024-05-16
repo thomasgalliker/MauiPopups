@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace MauiSampleApp.ViewModels
 {
-    public class MainViewModel : BindableBase, INavigatedAware
+    public class MainViewModel : BindableBase, INavigatedAware, IDestructible
     {
         private readonly ILogger logger;
         private readonly IPageDialogService pageDialogService;
@@ -16,6 +16,7 @@ namespace MauiSampleApp.ViewModels
 
         private IAsyncRelayCommand showPopupCommand;
         private IAsyncRelayCommand navigateToPageCommand;
+        private IAsyncRelayCommand goBackCommand;
 
         public MainViewModel(
             ILogger<MainViewModel> logger,
@@ -43,7 +44,6 @@ namespace MauiSampleApp.ViewModels
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            
         }
 
         private async Task InitializeAsync()
@@ -66,13 +66,14 @@ namespace MauiSampleApp.ViewModels
             {
                 var parameters = new NavigationParameters
                 {
-                    { "key1", "value1" }
+                    { "key1", "value1" },
+                    { KnownNavigationParameters.UseModalNavigation, "true" }
                 };
 
                 var result = await this.navigationService.NavigateAsync(page, parameters);
                 if (!result.Success)
                 {
-                    Debugger.Break();
+                    await this.pageDialogService.DisplayAlertAsync("Error", $"NavigateAsync to page {page} failed: " + result.Exception.Message, "OK");
                 }
             }
             catch (Exception ex)
@@ -88,15 +89,17 @@ namespace MauiSampleApp.ViewModels
         {
             try
             {
+                var page = App.Pages.ContextMenuPopupPage;
+
                 var parameters = new NavigationParameters
                 {
                     { "key1", "value1" }
                 };
 
-                var result = await this.navigationService.NavigateAsync(App.Pages.ContextMenuPopupPage, parameters);
+                var result = await this.navigationService.NavigateAsync(page, parameters);
                 if (!result.Success)
                 {
-                    Debugger.Break();
+                    await this.pageDialogService.DisplayAlertAsync("Error", $"NavigateAsync to page {page} failed: " + result.Exception.Message, "OK");
                 }
             }
             catch (Exception ex)
@@ -104,6 +107,35 @@ namespace MauiSampleApp.ViewModels
                 this.logger.LogError(ex, "ShowPopupAsync failed with exception");
                 await this.pageDialogService.DisplayAlertAsync("Error", "ShowPopupAsync failed with exception", "OK");
             }
+        }
+
+        public ICommand GoBackCommand => this.goBackCommand ??= new AsyncRelayCommand(this.GoBackAsync);
+
+        private async Task GoBackAsync()
+        {
+            try
+            {
+                var parameters = new NavigationParameters
+                {
+                    { "key1", "value1" }
+                };
+
+                var result = await this.navigationService.GoBackAsync(parameters);
+                if (!result.Success)
+                {
+                    await this.pageDialogService.DisplayAlertAsync("Error", $"GoBackAsync failed: " + result.Exception.Message, "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, "GoBackAsync failed with exception");
+                await this.pageDialogService.DisplayAlertAsync("Error", "GoBackAsync failed with exception", "OK");
+            }
+        }
+
+        public void Destroy()
+        {
+            this.logger.LogDebug("Destroy");
         }
     }
 }

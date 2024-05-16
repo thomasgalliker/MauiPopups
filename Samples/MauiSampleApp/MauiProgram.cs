@@ -22,8 +22,8 @@ namespace MauiSampleApp
                         .RegisterTypes(RegisterTypes)
                         .CreateWindow(async (containerProvider, navigationService) =>
                         {
-                            //var result = await navigationService.NavigateAsync($"/{App.Pages.NavigationPage}/{App.Pages.MainPage}");
-                            var result = await navigationService.NavigateAsync($"{App.Pages.MainPage}");
+                            var result = await navigationService.NavigateAsync($"/{App.Pages.NavigationPage}/{App.Pages.MainPage}");
+                            //var result = await navigationService.NavigateAsync($"{App.Pages.MainPage}");
                             if (!result.Success)
                             {
                                 Debugger.Break();
@@ -59,6 +59,7 @@ namespace MauiSampleApp
 
             // Register pages
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(App.Pages.MainPage);
+            containerRegistry.RegisterForNavigation<DetailPage1, MainViewModel>(App.Pages.DetailPage1);
             containerRegistry.RegisterForNavigation<ContextMenuPopupPage, ContextMenuPopupViewModel>(App.Pages.ContextMenuPopupPage);
         }
     }
