@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<m:PopupPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:ma="clr-namespace:Mopups.Animations;assembly=Mopups"
+    xmlns:vm="clr-namespace:MauiSampleApp.ViewModels"
+    x:Class="MauiSampleApp.Views.ContextMenuPopupPage"
+    x:DataType="vm:ContextMenuPopupViewModel"
+    BackgroundClickedCommand="{Binding GoBackCommand}"
+    BackgroundColor="#80000000">
+
+    <m:PopupPage.Animation>
+        <ma:ScaleAnimation
+            DurationIn="200"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1"
+            ScaleOut="1" />
+    </m:PopupPage.Animation>
+    <ScrollView
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <Border
+            BackgroundColor="White"
+            HeightRequest="300"
+            WidthRequest="300"
+            HorizontalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20" />
+            </Border.StrokeShape>
+            <VerticalStackLayout Spacing="3">
+                <Entry
+                    Placeholder="Username"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+
+                <Entry
+                    IsPassword="True"
+                    Placeholder="Password"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+
+                <Button
+                    Margin="10,5"
+                    Command="{Binding GoBackCommand}"
+                    Text="Login"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="EndAndExpand" />
+            </VerticalStackLayout>
+        </Border>
+
+    </ScrollView>
+</m:PopupPage>
