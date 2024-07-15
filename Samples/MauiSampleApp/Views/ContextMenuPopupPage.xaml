@@ -8,7 +8,8 @@
     x:Class="MauiSampleApp.Views.ContextMenuPopupPage"
     x:DataType="vm:ContextMenuPopupViewModel"
     BackgroundClickedCommand="{Binding GoBackCommand}"
-    BackgroundColor="#80000000">
+    BackgroundColor="#80000000"
+    CloseWhenBackgroundIsClicked="False">
 
     <m:PopupPage.Animation>
         <ma:ScaleAnimation

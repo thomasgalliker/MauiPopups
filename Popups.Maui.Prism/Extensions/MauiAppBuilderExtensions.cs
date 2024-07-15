@@ -23,6 +23,7 @@ namespace Popups.Maui.Prism
             containerRegistry.RegisterScoped<INavigationService, PopupPageNavigationService>();
             containerRegistry.RegisterSingleton<IDialogService, PopupDialogService>();
             containerRegistry.RegisterSingleton<IPageBehaviorFactory, PopupPageBehaviorFactory>();
+            containerRegistry.RegisterSingleton<IPageDialogService, PopupPageDialogService>();
         }
     }
 }
