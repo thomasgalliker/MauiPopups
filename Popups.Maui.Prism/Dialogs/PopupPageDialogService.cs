@@ -6,8 +6,9 @@ namespace Popups.Maui.Prism.Dialogs
     /// <inheritdoc />
     public class PopupPageDialogService : IPageDialogService
     {
-        private IWindowManager WindowManager { get; }
-        private IPopupNavigation PopupNavigation { get; }
+        private readonly IWindowManager windowManager;
+
+        private readonly IPopupNavigation popupNavigation;
 
         /// <summary>
         /// Gets the <see cref="IKeyboardMapper"/>.
@@ -22,9 +23,9 @@ namespace Popups.Maui.Prism.Dialogs
         /// <param name="popupNavigation">The <see cref="IPopupNavigation"/></param>
         public PopupPageDialogService(IWindowManager windowManager, IKeyboardMapper keyboardMapper, IPopupNavigation popupNavigation)
         {
-            this.WindowManager = windowManager;
+            this.windowManager = windowManager;
             this.KeyboardMapper = keyboardMapper;
-            this.PopupNavigation = popupNavigation;
+            this.popupNavigation = popupNavigation;
         }
 
         /// <summary>
@@ -191,12 +192,12 @@ namespace Popups.Maui.Prism.Dialogs
 
         private Page GetPage()
         {
-            if (this.WindowManager.Windows.FirstOrDefault() is not { } window)
+            if (this.windowManager.Windows.FirstOrDefault() is not { } window)
             {
                 throw new InvalidOperationException("There is no Prism Window currently displayed.");
             }
 
-            if (this.PopupNavigation.PopupStack.FirstOrDefault() is { } popupPage)
+            if (this.popupNavigation.PopupStack.FirstOrDefault() is { } popupPage)
             {
                 return popupPage;
             }
