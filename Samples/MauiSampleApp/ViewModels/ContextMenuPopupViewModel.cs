@@ -15,7 +15,8 @@ namespace MauiSampleApp.ViewModels
 
         public ContextMenuPopupViewModel(
             ILogger<ContextMenuPopupViewModel> logger,
-            INavigationService navigationService, IPageDialogService pageDialogService)
+            INavigationService navigationService,
+            IPageDialogService pageDialogService)
         {
             this.logger = logger;
             this.navigationService = navigationService;
@@ -52,19 +53,21 @@ namespace MauiSampleApp.ViewModels
         {
             try
             {
-                var close = await this.pageDialogService.DisplayAlertAsync("Confirmation", "Are you sure you want to close this?", "Yes",
+                var close = await this.pageDialogService.DisplayAlertAsync(
+                    "Confirmation",
+                    "Are you sure you want to close this?",
+                    "Yes",
                     "No").ConfigureAwait(true);
-                if (!close)
-                {
-                    return;
-                }
 
-                var navigationParameters = new NavigationParameters { { "key2", "value2" } };
-
-                var result = await this.navigationService.GoBackAsync(navigationParameters);
-                if (!result.Success)
+                if (close)
                 {
-                    Debugger.Break();
+                    var navigationParameters = new NavigationParameters { { "key2", "value2" } };
+
+                    var result = await this.navigationService.GoBackAsync(navigationParameters);
+                    if (!result.Success)
+                    {
+                        Debugger.Break();
+                    }
                 }
             }
             catch (Exception ex)
