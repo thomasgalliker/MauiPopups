@@ -9,15 +9,17 @@ namespace MauiSampleApp.ViewModels
     {
         private readonly ILogger logger;
         private readonly INavigationService navigationService;
+        private readonly IPageDialogService pageDialogService;
 
         private IAsyncRelayCommand showPopupCommand;
 
         public ContextMenuPopupViewModel(
             ILogger<ContextMenuPopupViewModel> logger,
-            INavigationService navigationService)
+            INavigationService navigationService, IPageDialogService pageDialogService)
         {
             this.logger = logger;
             this.navigationService = navigationService;
+            this.pageDialogService = pageDialogService;
         }
 
         public async void OnNavigatedTo(INavigationParameters parameters)
@@ -50,10 +52,14 @@ namespace MauiSampleApp.ViewModels
         {
             try
             {
-                var navigationParameters = new NavigationParameters
+                var close = await this.pageDialogService.DisplayAlertAsync("Confirmation", "Are you sure you want to close this?", "Yes",
+                    "No").ConfigureAwait(true);
+                if (!close)
                 {
-                    { "key2", "value2" }
-                };
+                    return;
+                }
+
+                var navigationParameters = new NavigationParameters { { "key2", "value2" } };
 
                 var result = await this.navigationService.GoBackAsync(navigationParameters);
                 if (!result.Success)
