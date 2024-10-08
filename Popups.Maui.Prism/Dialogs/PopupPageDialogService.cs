@@ -191,7 +191,7 @@ namespace Popups.Maui.Prism.Dialogs
 
         private Page GetPage()
         {
-            if (this.WindowManager.Windows.FirstOrDefault() is not { } window)
+            if (this.WindowManager.Current is not PrismWindow window)
             {
                 throw new InvalidOperationException("There is no Prism Window currently displayed.");
             }

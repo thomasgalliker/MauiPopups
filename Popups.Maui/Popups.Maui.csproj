@@ -34,11 +34,14 @@
 		<RepositoryUrl>https://github.com/thomasgalliker/MauiPopups</RepositoryUrl>
 		<Company>superdev GmbH</Company>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<PackageReleaseNotes>1.1
-- Add PopupDialogService to intercept Prism's popup handling
+		<PackageReleaseNotes>1.2
+- Update GetPage method to use WindowManager.Current.
+
+1.1
+- Add PopupDialogService to intercept Prism's popup handling.
 
 1.0
-- Initial release
+- Initial release.
 		</PackageReleaseNotes>
 		<Copyright>Copyright $([System.DateTime]::Now.ToString(`yyyy`)) © Thomas Galliker</Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
