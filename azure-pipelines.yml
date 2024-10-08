@@ -12,10 +12,7 @@ pool:
 trigger:
   branches:
     include:
-    - main
-    - develop
-    - feature/*
-    - bugfix/*
+    - refs/heads/*
 
   paths:
     exclude:
