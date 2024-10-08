@@ -5,7 +5,7 @@
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MauiSampleApp</RootNamespace>
 		<UseMaui>true</UseMaui>
-        <MauiVersion>8.0.70</MauiVersion>
+    <MauiVersion>8.0.72</MauiVersion>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
@@ -55,7 +55,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
 		<PackageReference Include="Mopups" Version="1.3.1" />
-		<PackageReference Include="Prism.DryIoc.Maui" Version="9.0.401-pre" />
+		<PackageReference Include="Prism.DryIoc.Maui" Version="9.0.537" />
 		<PackageReference Include="ValueConverters.MAUI" Version="3.0.26" />
     
     <!--To avoid silly build errors... incredible!-->
