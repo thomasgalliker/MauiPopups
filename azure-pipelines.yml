@@ -12,29 +12,18 @@ pool:
 trigger:
   branches:
     include:
-    - main
-    - develop
-    - feature/*
-    - bugfix/*
+    - refs/heads/*
 
   paths:
     exclude:
     - Docs/*
-
-schedules:
-- cron: "0 0 1 * *"
-  displayName: At 00:00 on day-of-month 1
-  branches:
-    include:
-    - develop
-  always: true
 
 variables:
   solution: 'MauiPopups.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   majorVersion: 1
-  minorVersion: 1
+  minorVersion: 2
   patchVersion: $[counter(format('{0}.{1}', variables.majorVersion, variables.minorVersion), 0)]
   ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
     # Versioning: 1.0.0

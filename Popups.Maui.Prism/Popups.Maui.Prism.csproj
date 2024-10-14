@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0;net8.0-android;net8.0-ios</TargetFrameworks>
+		<TargetFrameworks>net8.0;net8.0-android34;net8.0-ios17.0</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
@@ -50,7 +50,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Mopups" Version="1.3.1" />
-		<PackageReference Include="Prism.Maui" Version="[9.0.401-pre,)" />
+		<PackageReference Include="Prism.Maui" Version="[9.0.537,)" />
 	</ItemGroup>
 	
 	<ItemGroup Condition="$(TargetFramework.Contains('net8.0'))">
