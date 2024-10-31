@@ -90,14 +90,35 @@ namespace Popups.Maui.Prism
         }
 
         /// <inheritdoc />
-        protected override async Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool? animated, bool insertBeforeLast = false, int navigationOffset = 0)
+        protected override async Task DoPush(Page currentPage, Page page, bool? useModalNavigation, bool? animated,
+            bool insertBeforeLast = false, int navigationOffset = 0)
         {
             switch (page)
             {
                 case PopupPage popup:
                     if (this._windowManager.Windows[^1].Page is null)
                     {
-                        throw new NavigationException("Popup Pages cannot be set before the Application.MainPage has been set. You must have a valid NavigationStack prior to navigating.", popup);
+                        throw new NavigationException(
+                            "Popup Pages cannot be set before the Application.MainPage has been set. You must have a valid NavigationStack prior to navigating.",
+                            popup);
+                    }
+
+                    const int MaxRetries = 10;
+
+                    bool CheckPopupNavigationIsSet()
+                    {
+                        return popup?.Handler is not null || Application.Current?.MainPage?.Handler?.MauiContext is not null;
+                    }
+
+                    var retry = 0;
+                    while (!CheckPopupNavigationIsSet() && ++retry < MaxRetries)
+                    {
+                        await Task.Delay(100).ConfigureAwait(false);
+                    }
+
+                    if (!CheckPopupNavigationIsSet())
+                    {
+                        throw new NavigationException("Popup page cannot get proper handler");
                     }
 
                     await this.popupNavigation.PushAsync(popup, animated.GetValueOrDefault());
