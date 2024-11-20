@@ -59,9 +59,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-    <PackageReference Include="Microsoft.Maui.Controls" Version="[8.0.20,)"/>
-    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="[8.0.20,)"/>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[8.0.0,)" />
 	  <PackageReference Include="Mopups" Version="[1.3.2,)" />
 	</ItemGroup>
 	
