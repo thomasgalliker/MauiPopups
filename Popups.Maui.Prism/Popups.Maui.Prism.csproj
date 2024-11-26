@@ -39,6 +39,10 @@
 		</PackageReleaseNotes>
 		<Copyright>Copyright $([System.DateTime]::Now.ToString(`yyyy`)) © Thomas Galliker</Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedAllSources>true</EmbedAllSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
 	</PropertyGroup> 
 
 	<ItemGroup>
@@ -51,10 +55,6 @@
 	<ItemGroup>
 		<PackageReference Include="Mopups" Version="[1.3.2,)" />
 		<PackageReference Include="Prism.Maui" Version="[9.0.537,)" />
-	</ItemGroup>
-	
-	<ItemGroup Condition="$(TargetFramework.Contains('net8.0'))">
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[8.0.0,)" />
 	</ItemGroup>
 	
 	<ItemGroup>

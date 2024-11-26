@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using MauiSampleApp.Views;
 using Microsoft.Extensions.Logging;
 
 namespace MauiSampleApp.ViewModels
@@ -12,6 +13,7 @@ namespace MauiSampleApp.ViewModels
         private readonly IPageDialogService pageDialogService;
 
         private IAsyncRelayCommand showPopupCommand;
+        private IAsyncRelayCommand loginCommand;
 
         public ContextMenuPopupViewModel(
             ILogger<ContextMenuPopupViewModel> logger,
@@ -47,6 +49,9 @@ namespace MauiSampleApp.ViewModels
         }
 
         public ICommand GoBackCommand => this.showPopupCommand ??= new AsyncRelayCommand(this.GoBackAsync);
+
+        public IAsyncRelayCommand LoginCommand =>
+            this.loginCommand ??= new AsyncRelayCommand(() => this.navigationService.NavigateAsync(nameof(DetailPage)));
 
         private async Task GoBackAsync()
         {
