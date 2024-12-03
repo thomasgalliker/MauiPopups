@@ -80,7 +80,7 @@ namespace Popups.Maui.Prism
         protected override async Task<Page> DoPop(INavigation navigation, bool useModalNavigation, bool animated)
         {
             var page = this._pageAccessor.Page;
-            if (this.popupNavigation.PopupStack.Count > 0 || page is PopupPage)
+            if (this.popupNavigation.PopupStack.Count > 0 && page is PopupPage)
             {
                 await this.popupNavigation.PopAsync(animated);
                 return null;
