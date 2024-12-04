@@ -47,7 +47,7 @@
 
                 <Button
                     Margin="10,5"
-                    Command="{Binding GoBackCommand}"
+                    Command="{Binding LoginCommand}"
                     Text="Login"
                     HorizontalOptions="Fill"
                     VerticalOptions="EndAndExpand" />
